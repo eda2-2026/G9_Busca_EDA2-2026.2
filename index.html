@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmic Tower Defense - Desafio de Busca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="game-container">
+        <header class="hud">
+            <div class="stat">
+                <span>🚩 NÍVEL:</span>
+                <strong id="onda-atual">1 / 7</strong>
+            </div>
+            <div class="stat">
+                <span>🏆 ACERTOS ESTRATÉGICOS:</span>
+                <strong id="pontos">0</strong>
+            </div>
+        </header>
+
+        <section class="campo-batalha">
+            <div class="alerta-radar">
+                <span>🚨 ALVO SOLICITADO PELO RADAR:</span>
+                <strong id="alvo-requisitado">--</strong>
+            </div>
+
+            <div class="pista-inimigos" id="pista">
+
+            </div>
+        </section>
+
+        <section class="painel-controle">
+            <p class="instrucao-jogada">Qual algoritmo resolverá essa busca com o <strong>MENOR NÚMERO DE PASSO(S)</strong>?</p>
+            
+            <div class="botoes-algoritmo">
+                <button id="btn-sequencial" class="btn-algoritmo modo-seq">
+                    🔍 Busca Sequencial
+                    <small>Varre da esquerda para a direita</small>
+                </button>
+                <button id="btn-binario" class="btn-algoritmo modo-bin">
+                    ⚡ Busca Binária
+                    <small>Divide o intervalo ao meio</small>
+                </button>
+            </div>
+        </section>
+
+        <section class="painel-relatorio">
+            <div class="resultado-banner" id="banner-resultado">
+                <span>Aguardando sua escolha de algoritmo...</span>
+            </div>
+
+            <div class="grid-logs">
+                <div class="coluna-log">
+                    <h4>🔍 BUSCA SEQUENCIAL</h4>
+                    <div id="log-seq" class="log-box"></div>
+                </div>
+                <div class="coluna-log">
+                    <h4>⚡ BUSCA BINÁRIA</h4>
+                    <div id="log-bin" class="log-box"></div>
+                </div>
+            </div>
+
+            <button id="btn-proximo" class="btn-proximo oculto">
+                ➡️ Avançar para o Próximo Nível
+            </button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
