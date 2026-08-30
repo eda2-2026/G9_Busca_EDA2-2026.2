@@ -98,3 +98,130 @@ function simulacaoBinaria(alvo) {
     }
     return { passos, logs };
 }
+
+async function escolherAlgoritmo(escolhaJogador) {
+    if (bloqueado) return;
+    bloqueado = true;
+
+    document.getElementById("btn-sequencial").disabled = true;
+    document.getElementById("btn-binario").disabled = true;
+
+    const resSeq = simulacaoSequencial(alvoRequisitado);
+    const resBin = simulacaoBinaria(alvoRequisitado);
+
+    renderizarLogColuna("log-seq", resSeq.logs, resSeq.passos);
+    renderizarLogColuna("log-bin", resBin.logs, resBin.passos);
+
+    // vencedor
+    let melhorAlgoritmo = "binario";
+    if (resSeq.passos < resBin.passos) {
+        melhorAlgoritmo = "sequencial";
+    } else if (resSeq.passos === resBin.passos) {
+        melhorAlgoritmo = escolhaJogador; // Empate
+    }
+
+    // Animação
+    if (escolhaJogador === "sequencial") {
+        await animarBuscaSequencial(alvoRequisitado);
+    } else {
+        await animarBuscaBinaria(alvoRequisitado);
+    }
+
+    //resultado
+    const banner = document.getElementById("banner-resultado");
+    const acertou = (escolhaJogador === melhorAlgoritmo);
+
+    if (acertou) {
+        pontos++;
+        document.getElementById("pontos").textContent = pontos;
+        banner.className = "resultado-banner sucesso";
+        banner.innerHTML = `<strong>VOCÊ ACERTOU!</strong> A ${escolhaJogador === "sequencial" ? "Busca Sequencial" : "Busca Binária"} foi mais rápida nesta rodada (${resSeq.passos} passo(s) vs ${resBin.passos} passo(s)).`;
+    } else {
+        banner.className = "resultado-banner erro";
+        banner.innerHTML = `<strong>VOCÊ ERROU!</strong> A escolha mais eficiente era <strong>${melhorAlgoritmo === "sequencial" ? "Busca Sequencial" : "Busca Binária"}</strong> (${resSeq.passos} passo(s) Seq vs ${resBin.passos} passo(s) Bin).`;
+    }
+
+    // próximo nível
+    document.getElementById("btn-proximo").classList.remove("oculto");
+}
+
+function renderizarLogColuna(containerId, listaLogs, totalPassos) {
+    const box = document.getElementById(containerId);
+    box.innerHTML = "";
+    listaLogs.forEach(msg => {
+        const p = document.createElement("p");
+        p.className = "linha-log";
+        p.textContent = msg;
+        box.appendChild(p);
+    });
+    const resumo = document.createElement("div");
+    resumo.className = "resumo-passos";
+    resumo.textContent = `Total de comparações: ${totalPassos}`;
+    box.appendChild(resumo);
+}
+
+// Animações visuais na pista
+async function animarBuscaSequencial(alvo) {
+    for (let i = 0; i < inimigos.length; i++) {
+        const el = document.getElementById(`inimigo-${inimigos[i].id}`);
+        if (el) el.classList.add("testando");
+        await esperar(150);
+        if (el) el.classList.remove("testando");
+        if (inimigos[i].id === alvo) {
+            if (el) el.classList.add("destruido");
+            break;
+        }
+    }
+}
+
+async function animarBuscaBinaria(alvo) {
+    let inicio = 0;
+    let fim = inimigos.length - 1;
+    while (inicio <= fim) {
+        let meio = Math.floor((inicio + fim) / 2);
+        const el = document.getElementById(`inimigo-${inimigos[meio].id}`);
+        if (el) el.classList.add("testando");
+        await esperar(200);
+        if (el) el.classList.remove("testando");
+
+        if (inimigos[meio].id === alvo) {
+            if (el) el.classList.add("destruido");
+            break;
+        }
+        if (inimigos[meio].id < alvo) inicio = meio + 1;
+        else fim = meio - 1;
+    }
+}
+
+function avançarNivel() {
+    nivelAtual++;
+    iniciarNivel();
+}
+
+function exibirVitoriaFinal() {
+    limparLogs();
+    const banner = document.getElementById("banner-resultado");
+    banner.className = "resultado-banner sucesso";
+    banner.innerHTML = `🏆 <strong>FIM DO JOGO!</strong> Você concluiu os 7 níveis com ${pontos} de 7 acertos estratégicos!`;
+    document.getElementById("btn-proximo").classList.add("oculto");
+}
+
+function esperar(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function limparLogs() {
+    document.getElementById("log-seq").innerHTML = "<p class='vazio'>Aguardando execução...</p>";
+    document.getElementById("log-bin").innerHTML = "<p class='vazio'>Aguardando execução...</p>";
+    const banner = document.getElementById("banner-resultado");
+    banner.className = "resultado-banner";
+    banner.innerHTML = "<span>Analise a fila de inimigos e faça sua escolha!</span>";
+}
+
+// Event Listeners
+document.getElementById("btn-sequencial").addEventListener("click", () => escolherAlgoritmo("sequencial"));
+document.getElementById("btn-binario").addEventListener("click", () => escolherAlgoritmo("binario"));
+document.getElementById("btn-proximo").addEventListener("click", avançarNivel);
+
+// Inicialização
+iniciarNivel();
