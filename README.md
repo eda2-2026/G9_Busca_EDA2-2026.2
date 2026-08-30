@@ -44,9 +44,10 @@ O sistema está disponível online em:
 
 ## Video
 
+
 <div align="center">
-  <a href=" ">
-    <img src="https://img.youtube.com/vi/ /hqdefault.jpg" width="50%" alt="Vídeo no YouTube">
+  <a href="https://www.youtube.com/watch?v=vymEwah0Y70">
+    <img src="https://img.youtube.com/vi/vymEwah0Y70/hqdefault.jpg" width="50%" alt="Vídeo no YouTube">
   </a>
 </div>
 
