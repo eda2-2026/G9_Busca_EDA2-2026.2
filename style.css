@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0b0f19;
+    color: #e2e8f0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-container {
+    background: #151d30;
+    border: 2px solid #2a3756;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.hud {
+    display: flex;
+    justify-content: space-between;
+    background: #0b0f19;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.stat span {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.stat strong {
+    display: block;
+    color: #38bdf8;
+    font-size: 20px;
+}
+
+.campo-batalha {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.alerta-radar strong {
+    color: #f43f5e;
+    font-size: 22px;
+    margin-left: 8px;
+}
+
+.pista-inimigos {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    min-height: 90px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.inimigo {
+    background: #1e293b;
+    border: 2px solid #334155;
+    width: 55px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.hp-badge {
+    font-size: 13px;
+    font-weight: bold;
+    color: #38bdf8;
+    background: #0b0f19;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-top: 2px;
+    border: 1px solid #334155;
+}
+
+.inimigo.testando {
+    border-color: #f59e0b;
+    background: #451a03;
+    transform: scale(1.15);
+}
+
+.inimigo.destruido {
+    border-color: #22c55e;
+    background: #14532d;
+    transform: scale(1.2);
+    box-shadow: 0 0 12px #22c55e;
+}
+
+.painel-controle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.instrucao-jogada {
+    font-size: 14px;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+}
+
+.botoes-algoritmo {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-algoritmo {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 48%;
+}
+
+.btn-algoritmo:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.modo-seq { background: #d97706; }
+.modo-seq:hover:not(:disabled) { background: #b45309; }
+
+.modo-bin { background: #2563eb; }
+.modo-bin:hover:not(:disabled) { background: #1d4ed8; }
+
+.resultado-banner {
+    background: #0b0f19;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 15px;
+    border: 1px solid #1e293b;
+}
+
+.resultado-banner.sucesso {
+    background: #064e3b;
+    border-color: #10b981;
+    color: #a7f3d0;
+}
+
+.resultado-banner.erro {
+    background: #4c0519;
+    border-color: #f43f5e;
+    color: #fecdd3;
+}
+
+.grid-logs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.coluna-log h4 {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.log-box {
+    background: #0b0f19;
+    border: 1px solid #1e293b;
+    height: 150px;
+    border-radius: 8px;
+    padding: 10px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.linha-log {
+    margin-bottom: 4px;
+    color: #e2e8f0;
+}
+
+.vazio {
+    color: #64748b;
+    font-style: italic;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.resumo-passos {
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid #334155;
+    font-weight: bold;
+    color: #38bdf8;
+    text-align: right;
+}
+
+.btn-proximo {
+    width: 100%;
+    padding: 14px;
+    background: #10b981;
+    color: #042f2e;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-proximo:hover {
+    background: #059669;
+    color: #fff;
+}
+
+.oculto {
+    display: none;
+}
