@@ -1,7 +1,7 @@
 # G9_Busca_EDA2-2026.2
 
 
-## Grupo 3
+## Grupo 9
 |Matrícula | Aluno |
 | -- | -- |
 | 22/1022720 | Rayene Ferreira Almeida |
@@ -9,6 +9,12 @@
 
 ## Sobre 
 Projeto interativo para comparar a busca sequencial e a busca binária em uma simulação visual. O objetivo é demonstrar, de forma prática, qual algoritmo encontra o alvo com menor número de passos, reforçando conceitos de eficiência e análise de algoritmos de busca sequencial e binária.
+
+
+## Acesso Online
+
+O sistema está disponível online em:
+[https://eda2-2026.github.io/G9_Busca_EDA2-2026.2/](https://eda2-2026.github.io/G9_Busca_EDA2-2026.2/)
 
 ## Screenshots
 
